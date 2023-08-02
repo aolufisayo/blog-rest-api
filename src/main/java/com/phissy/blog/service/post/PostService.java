@@ -12,6 +12,8 @@ public interface PostService {
 
     Post getPostById(UUID postId);
 
+    List<Post> searchPost(String query);
+
     Post updatePost(UUID postId, Post updatedPost);
 
     void deletePost(UUID postId);

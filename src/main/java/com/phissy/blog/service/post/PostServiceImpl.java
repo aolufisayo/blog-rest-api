@@ -20,6 +20,12 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
+    public List<Post> searchPost(String query) {
+        List<Post> posts = postRepository.searchPost(query);
+        return posts;
+    }
+
+    @Override
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }

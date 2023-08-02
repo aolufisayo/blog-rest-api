@@ -35,6 +35,11 @@ public class PostController {
         return postService.getAllPosts();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Post>> searchPost(@RequestParam("query") String query){
+        return new ResponseEntity<>(postService.searchPost(query), HttpStatus.OK);
+    }
+
     @PutMapping("/{postId}")
     public ResponseEntity<Post> updatePost(@PathVariable("postId") UUID postId,@RequestBody Post post){
         return new ResponseEntity<>(postService.updatePost(postId, post), HttpStatus.OK);
