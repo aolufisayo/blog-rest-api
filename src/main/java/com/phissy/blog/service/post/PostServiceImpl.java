@@ -1,6 +1,7 @@
 package com.phissy.blog.service.post;
 
 import com.phissy.blog.entity.Post;
+import com.phissy.blog.exception.ResourceNotFoundException;
 import com.phissy.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post getPostById(UUID postId) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("post not found with id: "+ postId));
+        Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("post not found with id: "+ postId));
         return post;
     }
 
