@@ -14,11 +14,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserModel userModel){
-        return new ResponseEntity<>(userService.createUser(userModel), HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<User> readUser(@RequestParam("email") String email){
         return new ResponseEntity<>(userService.readUser(email), HttpStatus.OK);

@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,10 +23,11 @@ public class SecurityConfig {
         return http.csrf()
                 .disable()
                 .authorizeRequests(authz -> authz
-                        .antMatchers("/posts/**").permitAll()
-                        .antMatchers("/users/**").permitAll()
-                        .antMatchers("/comments/**").permitAll()
+                        .antMatchers("/login").permitAll()
+                        .antMatchers("/register").permitAll()
                         .anyRequest().authenticated())
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
